@@ -24,11 +24,6 @@ import javax.vecmath.Vector3d;
  */
 public class STLWriter {
 
-	//public static final STLColorModel DEFAULT = new DefaultSTLColorModel();
-
-	//public static final STLColorModel MATERIALISE = new MaterialiseSTLColorModel(
-	//		0xffffffff);
-
 	protected DataOutputStream ds;
 
 	protected Vector3d scale = new Vector3d(1, 1, 1);
@@ -37,15 +32,9 @@ public class STLWriter {
 
 	protected byte[] buf = new byte[4];
 
-	//protected STLColorModel colorModel;
-
 	public STLWriter() {
 		//this(DEFAULT);
 	}
-
-//	public STLWriter(STLColorModel cm) {
-//		colorModel = cm;
-//	}
 
 	public void beginSave(String fn, int numFaces) {
 		try {
@@ -80,18 +69,11 @@ public class STLWriter {
 		c_mut.sub(a);
 		b_mut.sub(a);
 		Vector3d normal = new Vector3d();
-		//MAY HAVE TO SWITCH IF I END UP GETTING NEGATIVE
+
 		normal.cross(c_mut,b_mut);
 		normal.normalize();
-//			if (useInvertedNormals) {
-//				normal.invert();
-//			}
-		//System.out.println("normal = " + normal.x + " " + normal.y + " " + normal.z);
 		writeVector(normal);
 		// vertices
-		//System.out.println("'a' = " + a.x + " " +a.y + " " + a.z);
-		//System.out.println("'b' = " + b.x + " " +b.y + " " + b.z);
-		//System.out.println("'c' = " + c.x + " " +c.y + " " + c.z);
 		writeVector(a);
 		writeVector(b);
 		writeVector(c);
@@ -110,7 +92,6 @@ public class STLWriter {
 	}
 
 	private final void prepareBuffer(int a) {
-	//Do not fully understand this 
 		buf[3] = (byte) (a >>> 24);
 		buf[2] = (byte) (a >> 16 & 0xff);
 		buf[1] = (byte) (a >> 8 & 0xff);
@@ -154,10 +135,7 @@ public class STLWriter {
 
 	protected void writeVector(Vector3d v) {
 		try {
-//			writeFloat(v.x * scale.x);
-//			writeFloat(v.y * scale.y);
-//			writeFloat(v.z * scale.z);
-			//System.out.println("float = " + (float)(v.x)+ "double = " + v.x);
+
 			writeFloat((float)(v.x * scale.x));
 			writeFloat((float)(v.y * scale.y));
 			writeFloat((float)(v.z * scale.z));

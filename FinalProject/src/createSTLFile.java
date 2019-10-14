@@ -8,27 +8,11 @@ import javafx.geometry.Point3D;
 
 public class createSTLFile {
 	public static void main(String[] args) throws IOException{
-		
-//	STLWriter sample = new STLWriter();
-//	//SAMPLE: numFaces = 4, tetrahedron
-//	sample.beginSave("tetra_31.stl",4);
-//	Vector3d a = new Vector3d(111,101,101);
-//	Vector3d b = new Vector3d(101,101,111);
-//	Vector3d c = new Vector3d(101,111,101);
-//	//Vector3d d = new Vector3d(101,101,101);
-//	//Import to keep these in counterclockwise order so the normals aren't weird
-//	sample.face(b, d, a);
-//	sample.face(c, b, d);
-//	sample.face(a, d, c);
-//	sample.face(c, a, b);
-//	sample.endSave();
-	
+			
 	getEarthDEM earth = new getEarthDEM(args[0]);
 	Point3D[][] earthDEM = earth.getPointCloud(); 
 	int width = earthDEM[0].length;
 	int height = earthDEM.length;
-//	int width = 2; 
-//	int height = 2;
 	int numFaces = 2*(width-1)*(height-1)+4*(width-1)+4*(height-1)+2;
 	STLWriter writer = new STLWriter();
 	writer.beginSave(args[0]+".stl",numFaces);
@@ -44,14 +28,8 @@ public class createSTLFile {
 			b = new Vector3d(1*earthDEM[i+1][j].getX(),1*earthDEM[i+1][j].getY(),earthDEM[i+1][j].getZ());
 			c = new Vector3d(1*earthDEM[i][j+1].getX(),1*earthDEM[i][j+1].getY(),earthDEM[i][j+1].getZ());
 			d = new Vector3d(1*earthDEM[i+1][j+1].getX(),1*earthDEM[i+1][j+1].getY(),earthDEM[i+1][j+1].getZ());
-//			System.out.println(earthDEM[i][j].getX() + " " + earthDEM[i][j].getY() + " " + earthDEM[i][j].getZ());
-//			System.out.println(earthDEM[i+1][j].getX() + " " + earthDEM[i+1][j].getY() + " " + earthDEM[i+1][j].getZ());
-//			System.out.println(earthDEM[i][j+1].getX() + " " + earthDEM[i][j+1].getY() + " " + earthDEM[i][j+1].getZ());
-//			System.out.println(earthDEM[i+1][j+1].getX() + " " + earthDEM[i+1][j+1].getY() + " " + earthDEM[i+1][j+1].getZ());
 			writer.face(a, c, d);
 			writer.face(b, a, d);
-			//count ++;
-			
 		}
 	}
 	//top edge
@@ -100,7 +78,6 @@ public class createSTLFile {
 	writer.face(a, d, c);
 	writer.face(a, b, d);
 		
-	//System.out.println("count =" + 2*count+ " numFaces = " + numFaces);
 	writer.endSave();
 	
 	} //main bracket

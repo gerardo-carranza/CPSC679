@@ -7,9 +7,6 @@ int main(int argc, char const *argv[])
 {
 	FILE *f;
 	FILE *ppm;
-	//char name[strlen(argv[1])+3]; //+3 is to include ppm in title
-	//strcpy(name,argv[1][]);
-	//strcat(name,"ppm");
 
 	f = fopen(argv[1],"r");
 	ppm = fopen(argv[2],"w");

@@ -18,12 +18,6 @@ public class getEarthDEM{
 	public getEarthDEM(String filename) throws IOException{
 		stream = new FileSeekableStream(filename);
 	}
-	//public static void main(String[] args) throws IOException{
-		
-		
-		//stream for TIFF
-		//FileSeekableStream stream = null;
-		//stream = new FileSeekableStream(args[0]);
 		
 	public Point3D [][] getPointCloud() throws IOException{	
 		ParameterBlock params = new ParameterBlock();
@@ -38,9 +32,6 @@ public class getEarthDEM{
 		 //We assume there is only 1 directory, therefore
 		 //the index of the directory is 0
 		 TIFFDirectory geodirectory = new TIFFDirectory(stream,0);
-		 //TIFFField[] geofield = geodirectory.getFields();		 
-		 //int [] x = geodirectory.getTags();
-		 //System.out.println(Arrays.toString(x));
 		 //Tag 257 = Image Length/Height
 		 int imgheight  = geodirectory.getField(257).getAsInt(0);
 		 //Tag 256 = ImageWidth
@@ -97,7 +88,6 @@ public class getEarthDEM{
 					System.err.println("Error: negative z values");
 				}
 				x_coor = sizeAdjust*xyconv*(180+modelXVal+scale*(i*n));
-				//System.out.println(90+modelYVal-scale*(j*n));
 				y_coor = sizeAdjust*xyconv*(90+modelYVal-scale*(j*n));
 				z_coor = sizeAdjust*z_coor;
 				//Necessary to add 180/90 to longitudes/latitude since STL coord must be > 0
@@ -106,9 +96,5 @@ public class getEarthDEM{
 		 }
 		 return earthDEM;
 	}
-//		 Point3D l = earthDEM[599][599];
-//		 System.out.println(l.getX() + "," + l.getY() + "," + l.getZ());
-//		 System.out.println(65-scale*6000);
-//		}
 		 
-	}
+}

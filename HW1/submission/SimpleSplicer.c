@@ -84,16 +84,7 @@ int checkForIntersection(int x, int y, double **ptArray, double *n,double *avera
 	l = malloc(sizeof(double)*3);
 	//Pts 1-2
 	l = slopeLine(ptArray[x],ptArray[y]);
-	// if(x==2 && y==3)
-	// {
-	// 	printf(" Pt3 %lf\n",ptArray[3][2]);
-	// 	printf("%lf",l[0]);
-	// 	// assert(l[0]==0);
-	// 	// assert(l[1]==1);
-	// 	// assert(l[2]==0);		
-	// 	//assert(dotProduct(n,l)==1);
-	// }
-	//printf(" Dot Product%lf\n",dotProduct(n,l));
+
 	if(abs(dotProduct(n,l)) < 10e-5)
 	{
 		return 1;

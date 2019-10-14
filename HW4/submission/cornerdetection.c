@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
 			for(j=0; j<numcols; j++)
 			{
 				fscanf(ppm,"%d %d %d",&R,&G,&B);
-				matrix[i][j] = 0.3*R+0.5*G+ 0.5*B; //Dpes this end up being a double?		
+				matrix[i][j] = 0.3*R+0.5*G+ 0.5*B;
 				//printf(	"%f\n",matrix[i][j]);		
 			}
 		}
@@ -104,9 +104,8 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-
 	//output values to a ppm! Wahoo!
-	//printf("Let's go!\n");
+	
 	new_image = fopen(argv[2],"w");
 	fprintf(new_image,"P3\n");
 	fprintf(new_image, "%d %d \n",numcols,numrows);
@@ -123,19 +122,11 @@ int main(int argc, char const *argv[])
 	fclose(ppm);
 	fclose(new_image);
 
-
-
-
 	//FREE MATRIX
-	for(i=0; i<numrows; i++)
-	{
+	for(i=0; i<numrows; i++){
 		free(matrix[i]);
 	}
 	free(matrix);
 	
-
-
-
-
 	return 0;
 }
